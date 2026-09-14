@@ -1,2 +1,2 @@
-3.1
-https://raw.githubusercontent.com/extreme2025-bot/extreme-dds-firmware/main/firmware/extreme_dds_3.1.bin
+3.3
+https://raw.githubusercontent.com/extreme2025-bot/extreme-dds-firmware/main/firmware/extreme_dds_3.3.bin
