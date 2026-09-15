@@ -1,0 +1,19 @@
+# Confere o versao.txt a cada push e em cada Pull Request.
+# Se ficar vermelho, NAO atualize o aparelho: o manifesto esta errado.
+name: Validar publicacao
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # precisa do commit anterior para comparar a versao
+
+      - name: Conferir versao.txt, binario e assinatura
+        run: python3 ferramentas/validar.py
