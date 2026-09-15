@@ -1,2 +1,3 @@
 4.7
 https://raw.githubusercontent.com/extreme2025-bot/extreme-dds-firmware/main/firmware/extreme_dds_4.7.bin
+MEUCIQDAnlTezSGPDrya3q+sBJ+ynudiORMHYDKtk7D5c/61twIgGrBWpSmLcqdwv16KIJDyoRFf7hW7fSOknyOREeu9LJ0=
