@@ -197,6 +197,27 @@ def main():
         erro("nao parece firmware de ESP32 (primeiro byte deveria ser 0xE9).")
     else:
         ok("cabecalho de ESP32 (0xE9)")
+
+    # A IDE exporta varios .bin.  So o do APLICATIVO serve para OTA:
+    #   EXTREME_DDS_VFO.ino.bin            <- este
+    #   ...ino.merged.bin / .bootloader.bin / .partitions.bin  <- nao servem
+    # Todos comecam com 0xE9, entao o primeiro byte nao distingue.  O que
+    # distingue e o descritor de aplicativo do ESP-IDF, no deslocamento 0x20.
+    APP_MAGIC = 0xABCD5432
+    if len(dados) < 0x30:
+        erro("arquivo curto demais para ser firmware.")
+    else:
+        magic = int.from_bytes(dados[0x20:0x24], "little")
+        if magic != APP_MAGIC:
+            erro("este NAO e o binario do aplicativo.")
+            erro("  Provavelmente e o .merged.bin, .bootloader.bin ou")
+            erro("  .partitions.bin que a IDE exporta junto.")
+            erro("  Para OTA use o arquivo terminado em .ino.bin (sem .merged).")
+        else:
+            ok("descritor de aplicativo do ESP-IDF presente (serve para OTA)")
+            idf = dados[0x20 + 112:0x20 + 144].split(b"\0")[0].decode(errors="replace")
+            if idf:
+                ok(f"compilado com ESP-IDF {idf}")
     sha = hashlib.sha256(dados).hexdigest()
     ok(f"SHA-256 {sha}")
     ok(f"tamanho {len(dados):,} bytes")
