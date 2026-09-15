@@ -1,0 +1,13 @@
+# NUNCA publicar. Este repositorio e publico.
+# A chave privada assina o firmware; o segredo gera as licencas.
+# Qualquer um dos dois aqui dentro compromete o produto inteiro,
+# e apagar depois NAO resolve: fica no historico do git para sempre.
+*.pem
+!chave-publica.pem
+*_priv*
+*privada*
+*private*
+segredo*
+chaves-NAO-PUBLICAR/
+SEGREDOS*
+assinar.sh

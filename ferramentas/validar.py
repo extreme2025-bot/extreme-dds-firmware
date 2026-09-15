@@ -88,12 +88,15 @@ def confere_assinatura(assinatura, versao, sha_hex, caminho_bin):
         erro("linha 3 nao e uma assinatura DER (deveria comecar com 0x30).")
         return
 
+    # O formato oficial e o do assinar.sh:
+    #   printf "%s\n%s\n" "$versao" "$sha256" | openssl dgst -sha256 -sign priv.pem
+    # Os outros ficam como rede de seguranca caso o assinar.sh mude.
     candidatos = {
+        "versao + LF + sha256hex + LF  (assinar.sh)": f"{versao}\n{sha_hex}\n".encode(),
+        "versao + LF + sha256hex (sem LF final)": f"{versao}\n{sha_hex}".encode(),
         "versao + '|' + sha256hex": f"{versao}|{sha_hex}".encode(),
-        "versao + '\\n' + sha256hex": f"{versao}\n{sha_hex}".encode(),
         "versao + sha256hex": f"{versao}{sha_hex}".encode(),
         "sha256hex": sha_hex.encode(),
-        "versao + sha256 (32 bytes crus)": versao.encode() + bytes.fromhex(sha_hex),
         "binario inteiro": open(caminho_bin, "rb").read(),
     }
 
