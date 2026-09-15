@@ -74,3 +74,19 @@ aparelho.
 | 3.3 | Comparacao numerica de versao (fim do downgrade) |
 | 3.2 | Lista de redes, motivo da falha |
 | 3.0 | OTA por HTTPS, endereco do servidor editavel no painel, recuperacao automatica do barramento I2C |
+
+## Servidor de teste
+
+`versao-teste.txt` existe para provar, no aparelho real, que firmware
+adulterado e recusado.  Ele aponta para
+`firmware/extreme_dds_4.9_TESTE_ADULTERADO.bin`, que e a 4.8 com **um bit
+trocado** de proposito, e traz a assinatura da 4.8 - que por isso nao
+confere.
+
+Como usar: no painel do DDS, troque o endereco do servidor para o
+`versao-teste.txt`, mande Atualizar, e o display tem que mostrar
+`Assinatura invalida` sem gravar nada.  Depois devolva o endereco para o
+`versao.txt`.
+
+**Nunca aponte o `versao.txt` de producao para esse binario.**  O validador
+so confere o `versao.txt`, entao este arquivo de teste nao interfere no CI.
