@@ -59,6 +59,7 @@ aparelho.
 
 | Versao | O que mudou |
 |---|---|
+| 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
 | 4.7 | Assinatura ECDSA no OTA, senha do ponto de acesso por aparelho, licenca por nivel, medicao de ROE/potencia/tensao, protecao de ROE, TOT corrigido, leitura do modo pelos pinos |
 | 4.4-4.6 | Senha mestra por serial, autoteste, horimetro, historico encadeado, selo do nivel na tela (versoes internas, nao publicadas) |
 | 4.3 | Sentido do encoder |
