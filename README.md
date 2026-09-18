@@ -65,7 +65,7 @@ aparelho.
 
 | Versao | O que mudou |
 |---|---|
-| 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
+| 5.3 | Espelho volta a funcionar dentro da sessao de suporte; botoes do encoder na pagina; link para o espelho no painel |
 | 5.2 | Sessao de suporte com codigo na tela, submenu Instalacao e diagnostico web; historico passa a exigir Avancado |
 | 5.1 | Espelho da tela por WiFi para suporte remoto (nasce desligado); a tela de digitacao de senha nao vai para a rede |
 | 5.0 | Bloqueio de senha passa a sobreviver ao desliga-liga; segunda camada na conferencia do manifesto; limpeza de codigo orfao |

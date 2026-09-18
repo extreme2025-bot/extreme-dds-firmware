@@ -53,16 +53,38 @@ def como_numero(v):
     return tuple(int(p) for p in partes)
 
 
-def manifesto_anterior():
-    """Le o versao.txt do commit anterior, se houver."""
+def _versao_do_commit(ref):
     try:
         txt = subprocess.run(
-            ["git", "show", "HEAD^:versao.txt"],
+            ["git", "show", f"{ref}:versao.txt"],
             cwd=RAIZ, capture_output=True, text=True, check=True,
         ).stdout
         return [l.strip() for l in txt.strip().splitlines()]
     except Exception:
         return None
+
+
+def manifesto_anterior(linhas):
+    """Le o versao.txt que esta PUBLICADO agora - o que os aparelhos baixam.
+
+    Onde ele esta depende de quem chamou o validador:
+
+      - antes do commit (na mao, conferindo o que se vai publicar): o
+        publicado e o de HEAD, porque o novo ainda nem foi commitado;
+      - depois do commit (na CI, que roda sobre o commit ja empurrado): o
+        publicado era o de HEAD^, porque HEAD ja e o novo.
+
+    Distingue pelos proprios dados: se o versao.txt de HEAD e igual ao da
+    arvore de trabalho, o commit ja foi feito e a comparacao e com HEAD^.
+
+    Ate a 5.3 isto olhava sempre HEAD^, entao na mao comparava com uma versao
+    velha demais: um downgrade de uma casa so passava como aviso em vez de
+    erro.  A CI pegaria depois, mas o portao tem que fechar dos dois lados.
+    """
+    atual = _versao_do_commit("HEAD")
+    if atual is not None and atual == linhas:
+        return _versao_do_commit("HEAD^")
+    return atual
 
 
 def confere_assinatura(assinatura, versao, sha_hex, caminho_bin):
@@ -154,7 +176,7 @@ def main():
         return 1
     ok(f"linha 1 = {versao}")
 
-    ant = manifesto_anterior()
+    ant = manifesto_anterior(linhas)
     if ant:
         num_ant = como_numero(ant[0])
         if num_ant is None:
