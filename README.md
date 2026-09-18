@@ -66,6 +66,7 @@ aparelho.
 | Versao | O que mudou |
 |---|---|
 | 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
+| 5.0 | Bloqueio de senha passa a sobreviver ao desliga-liga; segunda camada na conferencia do manifesto; limpeza de codigo orfao |
 | 4.9 | Menu em fonte grande, rotulos curtos, item Passo retirado, saudacao com o nome do cliente |
 | 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
 | 4.7 | Assinatura ECDSA no OTA, senha do ponto de acesso por aparelho, licenca por nivel, medicao de ROE/potencia/tensao, protecao de ROE, TOT corrigido, leitura do modo pelos pinos |
@@ -90,6 +91,10 @@ adulterado e recusado.  Ele aponta para
 `firmware/extreme_dds_4.9_TESTE_ADULTERADO.bin`, que e a 4.8 com **um bit
 trocado** de proposito, e traz a assinatura da 4.8 - que por isso nao
 confere.
+
+Ele anuncia a versao 9.9 de proposito: precisa ser sempre maior que a versao
+real, senao o aparelho responde "Ja esta atualizado" e o teste deixa de
+exercitar a conferencia de assinatura.
 
 Como usar: no painel do DDS, troque o endereco do servidor para o
 `versao-teste.txt`, mande Atualizar, e o display tem que mostrar
