@@ -1,3 +1,3 @@
-4.9
+5.1
 https://raw.githubusercontent.com/extreme2025-bot/extreme-dds-firmware/main/firmware/extreme_dds_4.9_TESTE_ADULTERADO.bin
 MEQCIBC1LJYUm8k0sxcELCeRU+3EhwbjNUHearK1X9IZppjvAiA4X+dSmeRYqjdROGAN9JZpPzLIQIDfNNx0rN0pY5UxyQ==

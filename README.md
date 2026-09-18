@@ -49,6 +49,12 @@ Coloque a chave **publica** ECDSA na raiz como `chave-publica.pem` e a
 checagem de assinatura liga sozinha. A chave publica pode ficar no repositorio:
 ela so serve para conferir. **A chave privada nunca entra aqui.**
 
+## Por que nao existem versoes anteriores a 4.7 aqui
+
+Da 3.0 a 4.6 o segredo de licenca ficava em texto puro dentro do `.bin` - um
+`strings` no arquivo o entregava.  O segredo foi trocado na 4.7 e aqueles
+binarios foram retirados.  Nao republique nenhum deles.
+
 ## Aviso
 
 Este repositorio guarda SOMENTE binarios. O codigo-fonte nao entra aqui: ele
@@ -59,6 +65,8 @@ aparelho.
 
 | Versao | O que mudou |
 |---|---|
+| 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
+| 4.9 | Menu em fonte grande, rotulos curtos, item Passo retirado, saudacao com o nome do cliente |
 | 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
 | 4.7 | Assinatura ECDSA no OTA, senha do ponto de acesso por aparelho, licenca por nivel, medicao de ROE/potencia/tensao, protecao de ROE, TOT corrigido, leitura do modo pelos pinos |
 | 4.4-4.6 | Senha mestra por serial, autoteste, horimetro, historico encadeado, selo do nivel na tela (versoes internas, nao publicadas) |
