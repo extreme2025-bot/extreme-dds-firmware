@@ -66,6 +66,7 @@ aparelho.
 | Versao | O que mudou |
 |---|---|
 | 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
+| 5.1 | Espelho da tela por WiFi para suporte remoto (nasce desligado); a tela de digitacao de senha nao vai para a rede |
 | 5.0 | Bloqueio de senha passa a sobreviver ao desliga-liga; segunda camada na conferencia do manifesto; limpeza de codigo orfao |
 | 4.9 | Menu em fonte grande, rotulos curtos, item Passo retirado, saudacao com o nome do cliente |
 | 4.8 | Validacao da versao recebida no OTA (manifesto malicioso travava o aparelho na atualizacao) |
