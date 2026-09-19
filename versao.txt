@@ -1,3 +1,3 @@
-5.3
-https://raw.githubusercontent.com/extreme2025-bot/extreme-dds-firmware/main/firmware/extreme_dds_5.3.bin
-MEUCIBgdo73Ty7+lb2rXkHatQObOG7MwGqeO+7ZYtXAuu+7rAiEA1186rvhrv8lspm+YSKt4eNK+z47X2SwR8UEPYvhpQHg=
+6.0
+https://raw.githubusercontent.com/extreme2025-bot/extreme-dds-firmware/main/firmware/extreme_dds_6.0.bin
+MEUCIEXEXMDUOXPWzHhRH38Gy89nNa6uRQ3xuIJm7o7vNjgIAiEAuETpj7HNXH2FFI9YG9CDCzudjIoq4saD4brHACLvUQU=

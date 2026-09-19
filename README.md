@@ -65,6 +65,9 @@ aparelho.
 
 | Versao | O que mudou |
 |---|---|
+| 6.0 | Licenca por assinatura: o segredo sai do firmware e ninguem mais fabrica chave |
+| 5.5 | Senha de fabrica por aparelho; painel web passa a exigir senha na rede do cliente |
+| 5.4 | A senha nao aparece no display quando quem digita esta na rede; relogio da sessao |
 | 5.3 | Espelho volta a funcionar dentro da sessao de suporte; botoes do encoder na pagina; link para o espelho no painel |
 | 5.2 | Sessao de suporte com codigo na tela, submenu Instalacao e diagnostico web; historico passa a exigir Avancado |
 | 5.1 | Espelho da tela por WiFi para suporte remoto (nasce desligado); a tela de digitacao de senha nao vai para a rede |
