@@ -87,6 +87,30 @@ def manifesto_anterior(linhas):
     return atual
 
 
+def eh_sha_hex(linha):
+    """[6.2] A linha 3 diz sozinha em que modo o firmware foi publicado:
+    64 digitos hexadecimais = modo DEV (SHA-256 do binario);
+    qualquer outra coisa    = modo PROD (assinatura ECDSA em base64).
+    O validador nao conhece o #define do firmware, e nao precisa."""
+    return len(linha) == 64 and all(c in "0123456789abcdefABCDEF" for c in linha)
+
+
+def confere_sha_da_linha3(linha, sha_hex):
+    """[6.2] Modo DEV: sem assinatura, mas NAO sem conferencia.  O SHA na
+    linha 3 tem de bater com o binario publicado - e o mesmo numero que o
+    aparelho recalcula enquanto baixa.  Pega arquivo trocado, truncado ou
+    manifesto de outra versao."""
+    if linha.lower() != sha_hex.lower():
+        erro("MODO DEV: o SHA-256 da linha 3 nao e o do binario.")
+        erro(f"  linha 3:  {linha.lower()}")
+        erro(f"  binario:  {sha_hex}")
+        return
+    ok("SHA-256 da linha 3 CONFERE com o binario.")
+    aviso("publicado em MODO DEV, sem assinatura.")
+    aviso("  O aparelho aceita este firmware sem provar quem o produziu.")
+    aviso("  Religar OTA_EXIGE_ASSINATURA antes de qualquer aparelho sair da bancada.")
+
+
 def confere_assinatura(assinatura, versao, sha_hex, caminho_bin):
     """
     Confere a assinatura ECDSA com a chave publica.
@@ -253,8 +277,15 @@ def main():
         ok(f"{pct:.1f}% da particao, {PARTICAO - len(dados):,} bytes livres")
 
     # --- 4. assinatura ---
-    print("\n4) Assinatura")
-    confere_assinatura(assinatura, versao, sha, caminho)
+    # [6.2] A forma da linha 3 diz o modo.  Nada de flag aqui: o manifesto se
+    # descreve sozinho, e assim o validador continua certo nos dois modos sem
+    # ninguem ter de lembrar de ajustar duas coisas em lugares diferentes.
+    if eh_sha_hex(assinatura):
+        print("\n4) SHA-256 da linha 3 (modo DEV, sem assinatura)")
+        confere_sha_da_linha3(assinatura, sha)
+    else:
+        print("\n4) Assinatura")
+        confere_assinatura(assinatura, versao, sha, caminho)
 
     # --- resultado ---
     print("\n" + "-" * 60)
